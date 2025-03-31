@@ -7,22 +7,57 @@
 .sidebar {
   min-height: 100vh;
   width: 300px;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: rgb(226, 241, 247);
+  transition: width 0.3s ease;
 }
+
+.sidebar.closed {
+  width: 50px; 
+}
+
 .top {
   margin: 30px;
   display: block;
   margin-left: 10px;
   cursor: pointer;
 }
+
 .open-btn {
   font-size: 30px;
   border: none;
+  background-color: transparent;
 }
+
 .open-btn:hover {
   background-color: gray;
   border-radius: 50%;
+}
+
+.new-chat,
+.recent,
+.botton {
+  padding: 15px;
+}
+
+.new-chat p,
+.recent p {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.botton-item {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.botton-item p {
+  font-size: 14px;
+}
+
+.botton {
+  margin-bottom: 20px;
 }

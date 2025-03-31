@@ -48,7 +48,9 @@ const Main = () => {
 
   return (
     <div className="chat-contenar">
-      <div className="header">Gemini</div>
+      <div className="header">
+        <h1>Gemini</h1>
+      </div>
       <div className="massage-box">
         {chats.map((c, i) => (
           <div key={i} className={c.who === "bot" ? "bot-massage" : "massage"}>
@@ -61,15 +63,19 @@ const Main = () => {
           </div>
         )}
       </div>
-      <div className="input-contenar">
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Write you massage here"
-          onKeyDown={(e) => e.key === "Enter" && sendMsg()}
-        />
-        <button onClick={sendMsg}>Send</button>
+      <div className="input-container-wrapper">
+        <div className="input-container">
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="Enter a prompt for Gemini"
+            onKeyDown={(e) => e.key === "Enter" && sendMsg()}
+          />
+          <button className="send-button" onClick={sendMsg}>
+            <span style={{ fontSize: "24px" }}>&#10148;</span>
+          </button>
+        </div>
       </div>
     </div>
   );
