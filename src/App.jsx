@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import Main from "./Component/Main";
 import Sidebar from "./Component/Sidebar";
 import "./App.css";
@@ -6,9 +6,10 @@ import "./App.css";
 function App(){
   return (
     <>
-     <Main/>
-     {/* <Sidebar/> */}
+     <Header/>
+     <Sidebar/>
     </>
   )
 }
+
 export default App;
