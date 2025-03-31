@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  body{
+    background-color: white;
+  }
+
+  .chat-contenar{
+    max-width: 80rem;
+    height: 100vh;
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid red;
+  }
+  
+  .massage-box{
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .massage{
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 80%;
+    line-height: 1.4;
+    word-break: break-word;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+    background-color: rgb(227, 226, 226);
+    color: rgb(39, 38, 38);
+  }
+  
+  .bot-massage{
+    align-self: flex-start;
+    background-color: #e0f7ef;
+    color: black;
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 80%;
+    line-height: 1.4;
+    word-break: break-word;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .input-contenar{
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  .input-contenar input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input-contenar input:focus {
+    border-color: rgb(146, 244, 218);
+  }
+  
+  .input-contenar button {
+    margin-left: 8px;
+    background-color: rgb(59, 237, 217);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 14px;
+  }
+  
+  .input-contenar button:hover {
+    background-color: rgb(156, 241, 213);
+  }
