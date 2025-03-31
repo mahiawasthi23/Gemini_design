@@ -1,11 +1,13 @@
-import React from "react";
-import Header from "./Component/Header";
-import Sidebar from "./Component/Sidebar";
+import React, { useState } from 'react';
+import Sidebar from './Component/Sidebar';
+// import './App.css';
 
-function App(){
+function App() {
+  return (
   <>
-   <Header/>
-   <Sidebar/>
+  <Sidebar/>
   </>
+  );
 }
+
 export default App;
