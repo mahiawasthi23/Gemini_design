@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Sidebar from './Component/Sidebar';
 // import './App.css';
 
-function App() {
+function App(){
   return (
-  <>
-  <Sidebar/>
-  </>
-  );
+    <>
+     <Header/>
+     <Sidebar/>
+    </>
+  )
 }
 
 export default App;
