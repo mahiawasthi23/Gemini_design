@@ -1,25 +1,28 @@
-*{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  body{
+  body {
     background-color: white;
   }
-
-  .chat-contenar{
-    max-width: 80rem;
+  .chat-contenar {
+    flex: 1;
     height: 100vh;
-    margin-left: 60px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid red;
+  }
+
+  .header h1{
+    font-size: 20px;
+    color: rgb(56, 55, 55);
+    margin: 20px 10px;
   }
   
-  .massage-box{
+  .massage-box {
     flex: 1;
     padding: 16px;
     overflow-y: auto;
@@ -28,7 +31,7 @@
     gap: 12px;
   }
   
-  .massage{
+  .massage {
     padding: 12px 16px;
     border-radius: 16px;
     max-width: 80%;
@@ -41,7 +44,7 @@
     color: rgb(39, 38, 38);
   }
   
-  .bot-massage{
+  .bot-massage {
     align-self: flex-start;
     background-color: #e0f7ef;
     color: black;
@@ -53,40 +56,49 @@
     font-size: 14px;
     transition: all 0.3s ease;
   }
-  
-  .input-contenar{
-    display: flex;
-    padding: 12px;
-    border-top: 1px solid #ddd;
-    background-color: #fff;
+
+  .input-contenar-wrapper{
+    width: 80vw;
+    align-self: center;
   }
   
-  .input-contenar input {
-    flex: 1;
-    padding: 10px 14px;
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
     border: 1px solid #ccc;
-    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .input-container input {
+    flex: 1;
+    padding: 10px 40px 10px 14px;
+    border: none;
+    border-radius: 20px;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
   }
   
-  .input-contenar input:focus {
-    border-color: rgb(146, 244, 218);
+  .input-container input::placeholder {
+    font-size: 1.2rem;
   }
   
-  .input-contenar button {
-    margin-left: 8px;
-    background-color: rgb(59, 237, 217);
+  .send-button {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
     border: none;
-    padding: 10px 18px;
-    border-radius: 12px;
-    color: black;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-size: 14px;
+    padding: 0;
   }
   
-  .input-contenar button:hover {
-    background-color: rgb(156, 241, 213);
+  .send-button span {
+    color: rgb(59, 237, 217);
+  }
+  
+  .send-button:hover span {
+    color: rgb(156, 241, 213);
   }
