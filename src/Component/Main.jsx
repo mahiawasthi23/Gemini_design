@@ -51,6 +51,7 @@ const Main = () => {
       <div className="header">
         <h1>Gemini</h1>
       </div>
+      <div className="main">
       <div className="massage-box">
         {chats.map((c, i) => (
           <div key={i} className={c.who === "bot" ? "bot-massage" : "massage"}>
@@ -73,9 +74,10 @@ const Main = () => {
             onKeyDown={(e) => e.key === "Enter" && sendMsg()}
           />
           <button className="send-button" onClick={sendMsg}>
-            <span style={{ fontSize: "24px" }}>&#10148;</span>
+            <span>&#10148;</span>
           </button>
         </div>
+      </div>
       </div>
     </div>
   );
