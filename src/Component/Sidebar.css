@@ -9,25 +9,28 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: rgb(243, 247, 247);
   transition: width 0.3s ease;
+  overflow: hidden;
 }
 
 .sidebar.closed {
-  width: 70px; 
+  width: 80px;
 }
 
 .top {
   width: 40px;
   height: 40px;
   margin: 15px 0px 0px 10px;
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   padding: 10px;
 }
-.top:hover{
+
+.top:hover {
   background-color: rgb(234, 235, 235);
   border-radius: 50%;
 }
@@ -36,30 +39,86 @@
   font-size: 20px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
-.new-chat,
-.recent,
-.botton {
-  padding: 15px;
+.menu-items {
+  flex-grow: 1;
+  padding: 10px;
 }
 
-.new-chat p,
-.recent p {
+.new-chat {
+  background-color: rgb(233, 230, 230);
+  border-radius: 30px;
+  margin-top: 30px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  padding: 10px;
+  width: 60%;
+  transition: all 0.3s ease;
+}
+
+.sidebar.closed .new-chat {
+  width: 40px;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+.new-chat span,
+.recent p,
+.bottom-item span {
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
-.botton-item {
-  padding: 10px 0;
+.sidebar.closed .new-chat span,
+.sidebar.closed .recent p,
+.sidebar.closed .bottom-item span {
+  display: none;
+}
+
+.recent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  font-weight: 200;
+  color: rgb(35, 34, 34);
+}
+
+.bottom {
+  margin-top: 250px;
+}
+
+.bottom-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
   cursor: pointer;
 }
 
-.botton-item p {
+.bottom-item p {
   font-size: 14px;
 }
 
-.botton {
-  margin-bottom: 20px;
+.bottom-item span{
+  margin-left: 10px;
+}
+
+
+.new-chat svg,
+.recent svg,
+.bottom-item svg {
+  font-size: 18px;
+}
+
+.bottom-item:hover{
+  background-color: gainsboro;
+  border-radius: 20px;
 }
