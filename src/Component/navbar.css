@@ -1,4 +1,51 @@
-.navbar{
+/* .navbar{
     height: 50px;
     border: solid 2px black;
 }
+
+.profile{
+    width: 40px;
+    height: 38px;
+    border: solid 2px black;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 33px;
+    font-size: 23px;
+    margin-left: 1090px;
+    margin-top: 4px;
+}
+
+
+   */
+
+   .navbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .profile {
+    width: 40px;
+    height: 40px;
+    background-color: #555;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
