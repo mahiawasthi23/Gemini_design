@@ -12,7 +12,7 @@ function Sidebar() {
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
       <div className='top'>
         <button className="open-btn" onClick={toggleSidebar}>
-          ☰
+           ☰
         </button>
       </div>
       {isOpen && (

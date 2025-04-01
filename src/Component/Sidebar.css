@@ -10,30 +10,32 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgb(226, 241, 247);
+  background-color: rgb(243, 247, 247);
   transition: width 0.3s ease;
 }
 
 .sidebar.closed {
-  width: 50px; 
+  width: 70px; 
 }
 
 .top {
-  margin: 30px;
+  width: 40px;
+  height: 40px;
+  margin: 15px 0px 0px 10px;
   display: block;
-  margin-left: 10px;
+  text-align: center;
   cursor: pointer;
+  padding: 10px;
+}
+.top:hover{
+  background-color: rgb(234, 235, 235);
+  border-radius: 50%;
 }
 
 .open-btn {
-  font-size: 30px;
+  font-size: 20px;
   border: none;
   background-color: transparent;
-}
-
-.open-btn:hover {
-  background-color: gray;
-  border-radius: 50%;
 }
 
 .new-chat,
