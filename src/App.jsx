@@ -8,11 +8,16 @@ import Login from './Component/Login';
 import Signup from './Component/Signup';
 
 function App() {
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark-theme');
+  };
+  
   return (
     <AuthProvider>
       <Router>
         <div className="app-container">
-          <Sidebar />
+        <Sidebar toggleTheme={toggleTheme}/>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />

@@ -15,6 +15,7 @@
     flex-direction: column;
     overflow: hidden;
   }
+
   .main{
     flex: 1;
     width: 70vw;
@@ -30,7 +31,8 @@
     color: rgb(56, 55, 55);
     margin: 20px 10px;
   }
-  
+
+ 
   .massage-box {
     flex: 1;
     padding: 16px;
@@ -46,24 +48,27 @@
     max-width: 80%;
     line-height: 1.4;
     word-break: break-word;
-    font-size: 14px;
+    font-size: 17px;
     transition: all 0.3s ease;
     align-self: flex-end;
-    background-color: rgb(227, 226, 226);
+    background-color: rgb(240, 243, 242);
     color: rgb(39, 38, 38);
   }
   
   .bot-massage {
     align-self: flex-start;
-    background-color: #e0f7ef;
     color: black;
     padding: 12px 16px;
     border-radius: 16px;
     max-width: 80%;
     line-height: 1.4;
     word-break: break-word;
-    font-size: 14px;
+    font-size: 17px;
     transition: all 0.3s ease;
+  }
+
+  .bot-massage span {
+    color: blue;
   }
 
   .input-container {
@@ -101,7 +106,7 @@
     background-color: #e1f7f9;
     border-radius: 50%;
   }
-  
+ 
   .send-button span {
     color: rgb(59, 237, 217);
     font-size: 20px;
