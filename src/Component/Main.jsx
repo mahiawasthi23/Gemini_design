@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import "./Main.css";
+import Navbar from "./Navbar";
 
 const Main = () => {
   const [chats, setChats] = useState([]);
@@ -49,7 +50,7 @@ const Main = () => {
   return (
     <div className="chat-contenar">
       <div className="header">
-        <h1>Gemini</h1>
+        <Navbar/>
       </div>
       <div className="massage-box">
         {chats.map((c, i) => (
