@@ -4,9 +4,14 @@ import Sidebar from "./Component/Sidebar";
 import "./App.css";
 
 function App() {
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark-theme');
+  };
+  
   return (
     <div className="app-container">
-      <Sidebar />
+      <Sidebar toggleTheme={toggleTheme}/>
       <Main />
     </div>
   );
