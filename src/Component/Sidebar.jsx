@@ -3,7 +3,9 @@ import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCog, faQuestionCircle, faHistory } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar({ toggleTheme, recentSearches }) {
+
+function Sidebar({toggleTheme, recentSearches}) {
+
   const [isOpen, setIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -68,7 +70,11 @@ function Sidebar({ toggleTheme, recentSearches }) {
             <FontAwesomeIcon icon={faHistory} />
             {isOpen && <span> Activity</span>}
           </div>
-          <div className="bottom-item" onClick={toggleSettings}>
+
+
+
+          <div className="bottom-item" onMouseEnter={openSidebar} onClick={toggleSettings}>
+
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span> Settings</span>}
           </div>
@@ -77,8 +83,8 @@ function Sidebar({ toggleTheme, recentSearches }) {
               <button onClick={toggleTheme}>Dark Theme</button>
             </div>
           )}
-        </div>
       </div>
+
 
       {showHistory && (
         <div className="history-popup">
@@ -91,6 +97,7 @@ function Sidebar({ toggleTheme, recentSearches }) {
         </div>
       )}
     </div>
+  </div>
   );
 }
 
