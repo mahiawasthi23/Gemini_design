@@ -37,6 +37,7 @@ function App() {
         <div className="app-container">
 
           <Sidebar recentSearches={recentSearches} toggleTheme={toggleTheme}/>
+          
       
           <Routes>
             <Route path="/" element={<Main  addToRecent={addToRecent}/>}  />
