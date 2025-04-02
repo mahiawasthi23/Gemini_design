@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import "./Main.css";
 import Navbar from "./Navbar";
 
-const Main = () => {
+const Main = ({ addToRecent }) => {
   const [chats, setChats] = useState([]);
   const [text, setText] = useState("");
   const [typing, setTyping] = useState("");
@@ -11,19 +11,39 @@ const Main = () => {
   const key = import.meta.env.VITE_APP_URI;
   const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
 
-  const showTyping = async (msagge) => {
+  useEffect(() => {
+    const savedChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    setChats(savedChats);
+  }, []);
+
+  const showTyping = async (message) => {
     setTyping("");
-    for (let i = 0; i < msagge.length; i++) {
-      setTyping((prev) => prev + msagge[i]);
+    for (let i = 0; i < message.length; i++) {
+      setTyping((prev) => prev + message[i]);
       await new Promise((done) => setTimeout(done, 30));
     }
-    setChats((prev) => [...prev, { who: "bot", msagge }]);
+
+    const newChat = { who: "bot", message };
+    setChats((prev) => {
+      const updatedChats = [...prev, newChat];
+      localStorage.setItem("chatHistory", JSON.stringify(updatedChats)); // ✅ Save history
+      return updatedChats;
+    });
+
     setTyping("");
   };
 
   const sendMsg = async () => {
     if (!text.trim()) return;
-    setChats((prev) => [...prev, { who: "me", msagge: text }]);
+    const userMessage = { who: "me", message: text };
+    
+    setChats((prev) => {
+      const updatedChats = [...prev, userMessage];
+      localStorage.setItem("chatHistory", JSON.stringify(updatedChats)); // ✅ Save history
+      return updatedChats;
+    });
+
+    addToRecent(text); // ✅ Recent section me add karne ke liye
     const ask = text;
     setText("");
 
@@ -43,42 +63,42 @@ const Main = () => {
       const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No reply";
       await showTyping(reply);
     } catch {
-      setChats((prev) => [...prev,{who: "bot", msg: "API error."}]);
+      setChats((prev) => [...prev, { who: "bot", message: "API error." }]);
     }
   };
 
   return (
-    <div className="chat-contenar">
+    <div className="chat-container">
       <div className="header">
-        <Navbar/>
+        <Navbar />
       </div>
       <div className="main">
-      <div className="massage-box">
-        {chats.map((c, i) => (
-          <div key={i} className={c.who === "bot" ? "bot-massage" : "massage"}>
-            <ReactMarkdown>{c.msagge}</ReactMarkdown>
-          </div>
-        ))}
-        {typing && (
-          <div className="bot-massage">
-           <ReactMarkdown>{typing}</ReactMarkdown>
-          </div>
-        )}
-      </div>
-      <div className="input-container-wrapper">
-        <div className="input-container">
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Enter a prompt for Gemini"
-            onKeyDown={(e) => e.key === "Enter" && sendMsg()}
-          />
-          <button className="send-button" onClick={sendMsg}>
-            <span>&#10148;</span>
-          </button>
+        <div className="message-box">
+          {chats.map((c, i) => (
+            <div key={i} className={c.who === "bot" ? "bot-message" : "message"}>
+              <ReactMarkdown>{c.message}</ReactMarkdown>
+            </div>
+          ))}
+          {typing && (
+            <div className="bot-message">
+              <ReactMarkdown>{typing}</ReactMarkdown>
+            </div>
+          )}
         </div>
-      </div>
+        <div className="input-container-wrapper">
+          <div className="input-container">
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Enter a prompt for Gemini"
+              onKeyDown={(e) => e.key === "Enter" && sendMsg()}
+            />
+            <button className="send-button" onClick={sendMsg}>
+              <span>&#10148;</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
