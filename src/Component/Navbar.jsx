@@ -11,9 +11,9 @@ function Navbar() {
 
   useEffect(() => {
     if (user?.username) {
-      setUsername(user.username.charAt(0).toUpperCase()); // Pehla letter
+      setUsername(user.username.charAt(0).toUpperCase()); 
     } else {
-      setUsername("?"); // Default agar user null hai
+      setUsername(""); 
     }
   }, [user]);
 
