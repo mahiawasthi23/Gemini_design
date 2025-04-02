@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCog, faQuestionCircle, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCog, faQuestionCircle, faHistory, faMoon,faGem} from "@fortawesome/free-solid-svg-icons";
+
 
 function Sidebar({ toggleTheme, recentSearches }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,11 +14,14 @@ function Sidebar({ toggleTheme, recentSearches }) {
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
   return (
-    <div className={`sidebar ${isOpen ? "open" : "closed"}`} onMouseLeave={handleMouseLeave}>
+    <div 
+      className={`sidebar ${isOpen ? "open" : "closed"}`} 
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="top">
         <button className="open-btn" onClick={toggleSidebar}>☰</button>
       </div>
-      <div className="menu-items">
+      <div className="menu-items" onClick={toggleSidebar}>
         <div className="new-chat" onClick={toggleSidebar}>
           <FontAwesomeIcon icon={faPlus} />
           {isOpen && <span> New Chat</span>}
@@ -29,17 +33,37 @@ function Sidebar({ toggleTheme, recentSearches }) {
           ))}
         </div>
         <div className="bottom">
-          <div className="bottom-item" onMouseEnter={toggleSidebar}>
+        <div className="bottom-item" tabIndex={0}>
+            <FontAwesomeIcon icon={faGem} />
+            {isOpen && <span> Gem  manager</span>}
+          </div>
+          <div className="bottom-item" tabIndex={0}>
             <FontAwesomeIcon icon={faQuestionCircle} />
             {isOpen && <span> Help</span>}
           </div>
-          <div className="bottom-item" onMouseEnter={toggleSettings}>
+          
+          <div className="bottom-item" tabIndex={0}>
+            <FontAwesomeIcon icon={faHistory} />
+            {isOpen && <span> Activity</span>}
+          </div>
+
+          <div 
+            className="bottom-item" 
+            tabIndex={0}  
+            onClick={toggleSettings}
+          >
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span> Settings</span>}
           </div>
+
           {isSettingsOpen && (
             <div className="settings-menu">
-              <button onClick={toggleTheme}>Toggle Dark Theme</button>
+              <button onClick={toggleTheme}>
+                <span><FontAwesomeIcon icon={faMoon} /></span> Dark Theme
+                <div className="toggle-div">
+                  <div className="circle-div"></div>
+                </div>
+              </button>
             </div>
           )}
         </div>
