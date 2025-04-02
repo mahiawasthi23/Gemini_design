@@ -3,9 +3,11 @@ import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCog, faQuestionCircle, faHistory, faMoon,faGem} from "@fortawesome/free-solid-svg-icons";
 
+
 function Sidebar({ toggleTheme, recentSearches }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const handleMouseLeave = () => setIsOpen(false);
@@ -30,7 +32,6 @@ function Sidebar({ toggleTheme, recentSearches }) {
             <div key={index} className="recent-item">{search}</div>
           ))}
         </div>
-
         <div className="bottom">
         <div className="bottom-item" tabIndex={0}>
             <FontAwesomeIcon icon={faGem} />
