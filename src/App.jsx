@@ -10,8 +10,6 @@ import Signup from './Component/Signup';
 
 function App() {
 
-
-
   
   const [recentSearches, setRecentSearches] = useState([]);
 
