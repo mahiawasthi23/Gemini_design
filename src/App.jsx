@@ -35,8 +35,7 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="app-container">
-          <Sidebar recentSearches={recentSearches}/>
-        <Sidebar toggleTheme={toggleTheme}/>
+          <Sidebar recentSearches={recentSearches}toggleTheme={toggleTheme}/>
           <Routes>
             <Route path="/" element={<Main  addToRecent={addToRecent}/>}  />
             <Route path="/login" element={<Login />} />
