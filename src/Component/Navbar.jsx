@@ -11,10 +11,9 @@ function Navbar() {
 
   useEffect(() => {
     if (user?.username) {
-      setUsername(user.username.charAt(0).toUpperCase()); 
+      setUsername(user.username.charAt(0).toUpperCase());
     } else {
-      setUsername(""); 
-
+      setUsername("");
     }
   }, [user]);
 
@@ -30,9 +29,8 @@ function Navbar() {
     <div className="navbar">
       <h1>Gemini</h1>
       <div className="profile" onClick={handleProfileClick}>
-       <h1>{username}</h1>
+        <h1>{username}</h1>
       </div>
-
       {showOptions && user?.username && (
         <div className="dropdown-menu">
           <p>Welcome, {user.username}</p>
