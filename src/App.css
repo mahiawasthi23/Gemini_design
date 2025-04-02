@@ -7,11 +7,22 @@
   color: white;
 } 
 
+
+
 .dark-theme .app-container,.dark-theme .header h1,
 .dark-theme input, .dark-theme .input-container, .dark-theme
 .input-container input::placeholder{
   background-color: rgb(29, 28, 28);
   color: white;
+}
+
+ .dark-theme .bot-message {
+   color: white;
+}
+
+.dark-theme .message{
+  color: white;
+  background-color: rgb(54, 53, 53);
 }
 
 .dark-theme .send-button{
