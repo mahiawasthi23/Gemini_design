@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCog, faQuestionCircle, faHistory } from "@fortawesome/free-solid-svg-icons";
-function Sidebar({ recentSearches }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [showHistory, setShowHistory] = useState(false);
 
-function Sidebar({toggleTheme}) {
+function Sidebar({toggleTheme, recentSearches}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
 
 
   const toggleSidebar = () => {
@@ -73,9 +70,7 @@ function Sidebar({toggleTheme}) {
             {isOpen && <span> Activity</span>}
           </div>
 
-          <div className="bottom-item" onMouseEnter={openSidebar}>
-
-          <div className='bottom-item' onMouseEnter={openSidebar} onClick={toggleSettings}>
+          <div className="bottom-item" onMouseEnter={openSidebar} onClick={toggleSettings}>
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span> Settings</span>}
           </div>
@@ -84,21 +79,9 @@ function Sidebar({toggleTheme}) {
               <button onClick={toggleTheme}>Dark Theme</button>
             </div>
           )}
-        </div>
       </div>
-
-     
-      {showHistory && (
-        <div className="history-popup">
-          <p>Recent Activity</p>
-          {recentSearches.map((search, index) => (
-            <div key={index} className="history-item">
-              {search}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
+  </div>
   );
 }
 
