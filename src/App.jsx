@@ -9,6 +9,7 @@ import Login from './Component/Login';
 import Signup from './Component/Signup';
 
 function App() {
+
   const [recentSearches, setRecentSearches] = useState([]);
 
   useEffect(() => {
@@ -48,7 +49,3 @@ function App() {
   );
 }
 export default App;
-
-
-
-
