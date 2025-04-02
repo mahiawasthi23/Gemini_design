@@ -15,9 +15,6 @@ function Navbar() {
     } else {
       setUsername(""); 
 
-      setUsername(user.username.charAt(0).toUpperCase());
-    } else {
-      setUsername("?");
     }
   }, [user]);
 

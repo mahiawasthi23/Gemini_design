@@ -115,3 +115,7 @@
   .send-button:hover span {
     color: rgb(156, 241, 213);
   }
+
+  .chat-container{
+    width: 100%;
+  }
