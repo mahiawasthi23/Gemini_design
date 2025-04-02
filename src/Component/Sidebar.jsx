@@ -20,7 +20,7 @@ function Sidebar({ toggleTheme, recentSearches }) {
         <button className="open-btn" onClick={toggleSidebar}>☰</button>
       </div>
       <div className="menu-items" onClick={toggleSidebar}>
-        <div className="new-chat" onClick={toggleSidebar}>
+        <div className="new-chat" >
           <FontAwesomeIcon icon={faPlus} />
           {isOpen && <span> New Chat</span>}
         </div>
