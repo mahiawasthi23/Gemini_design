@@ -14,6 +14,10 @@ function Navbar() {
       setUsername(user.username.charAt(0).toUpperCase()); 
     } else {
       setUsername(""); 
+
+      setUsername(user.username.charAt(0).toUpperCase());
+    } else {
+      setUsername("?");
     }
   }, [user]);
 
@@ -27,8 +31,9 @@ function Navbar() {
 
   return (
     <div className="navbar">
+      <h1>Gemini</h1>
       <div className="profile" onClick={handleProfileClick}>
-        {username}
+       <h1>{username}</h1>
       </div>
 
       {showOptions && user?.username && (

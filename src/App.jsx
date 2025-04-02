@@ -10,6 +10,7 @@ import Signup from './Component/Signup';
 
 function App() {
 
+
   const [recentSearches, setRecentSearches] = useState([]);
 
   useEffect(() => {
@@ -24,11 +25,18 @@ function App() {
       return updatedSearches;
     });
   };
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark-theme');
+  };
+  
+
   return (
     <AuthProvider>
       <Router>
         <div className="app-container">
           <Sidebar recentSearches={recentSearches}/>
+        <Sidebar toggleTheme={toggleTheme}/>
           <Routes>
             <Route path="/" element={<Main  addToRecent={addToRecent}/>}  />
             <Route path="/login" element={<Login />} />
