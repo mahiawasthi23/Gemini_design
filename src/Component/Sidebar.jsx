@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCog, faQuestionCircle, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCog, faQuestionCircle, faHistory,faMoon } from "@fortawesome/free-solid-svg-icons";
 
 
 function Sidebar({toggleTheme, recentSearches}) {
@@ -61,41 +61,35 @@ function Sidebar({toggleTheme, recentSearches}) {
               </div>
             ))}
         </div>
-        <div className="bottom">
-          <div className="bottom-item" onMouseEnter={openSidebar}>
-            <FontAwesomeIcon icon={faQuestionCircle} />
-            {isOpen && <span> Help</span>}
-          </div>
-          <div className="bottom-item" onMouseEnter={showHistoryTemporarily}>
-            <FontAwesomeIcon icon={faHistory} />
-            {isOpen && <span> Activity</span>}
-          </div>
 
+<div className="bottom">
+  <div className="bottom-item" tabIndex="0" onMouseEnter={openSidebar} onClick={(e) => e.currentTarget.focus()}>
+    <FontAwesomeIcon icon={faQuestionCircle} />
+    {isOpen && <span> Help</span>}
+  </div>
+  
+  <div className="bottom-item" tabIndex="0" onMouseEnter={showHistoryTemporarily} onClick={(e) => e.currentTarget.focus()}>
+    <FontAwesomeIcon icon={faHistory} />
+    {isOpen && <span> Activity</span>}
+  </div>
 
+  <div className="bottom-item" tabIndex="0" onMouseEnter={openSidebar} onClick={(e) => e.currentTarget.focus() || toggleSettings()}>
+    <FontAwesomeIcon icon={faCog} />
+    {isOpen && <span> Settings</span>}
+  </div>
 
-          <div className="bottom-item" onMouseEnter={openSidebar} onClick={toggleSettings}>
-
-            <FontAwesomeIcon icon={faCog} />
-            {isOpen && <span> Settings</span>}
-          </div>
-          {isSettingsOpen && (
-            <div className="settings-menu">
-              <button onClick={toggleTheme}>Dark Theme</button>
-            </div>
-          )}
-      </div>
-
-
-      {showHistory && (
-        <div className="history-popup">
-          <p>Recent Activity</p>
-          {recentSearches.map((search, index) => (
-            <div key={index} className="history-item">
-              {search}
-            </div>
-          ))}
+  {isSettingsOpen && (
+    <div className="settings-menu">
+      <button onClick={toggleTheme}>
+        <span><FontAwesomeIcon icon={faMoon} /></span> Dark Theme
+        <div className="toggle-div">
+          <div className="circle-div"></div>
         </div>
-      )}
+      </button>
+    </div>
+  )}
+</div>
+
     </div>
   </div>
   );
