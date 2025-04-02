@@ -62,10 +62,21 @@
   background-color: rgb(58, 57, 57);
 }
 
-.dark-theme .bottom-item:focus{
-  background-color: blue;
+.dark-theme .bottom-item:focus {
+  background-color: rgb(31, 61, 228);
+  color: rgb(76, 215, 233);
+  outline: none; 
 }
 .dark-theme .settings-menu button{
   background: black;
   color: white;
+}
+
+.dark-theme .circle-div{
+  float: right;
+  background-color: blue;
+}
+
+.dark-theme .toggle-div{
+  background-color: skyblue;
 }
