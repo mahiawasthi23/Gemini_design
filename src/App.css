@@ -1,4 +1,4 @@
-.app-container {
+ .app-container {
     display: flex;
   }
 
@@ -6,8 +6,6 @@
   background-color: rgb(37, 37, 37);
   color: white;
 } 
-
-
 
 .dark-theme .app-container,.dark-theme .main_header h1,
 .dark-theme input, .dark-theme .input-container, .dark-theme
@@ -79,7 +77,8 @@
 
 .dark-theme .toggle-div{
   background-color: skyblue;
-}
+} 
+
 
 .dark-theme .profile{
   background-color: rgb(56, 54, 54);
