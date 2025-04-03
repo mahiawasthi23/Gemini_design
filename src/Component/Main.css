@@ -111,5 +111,17 @@
     width: 100%;
   }
 
+  .input-container .add-files{
+    margin-top: 8px;
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    background-color: rgb(229, 225, 225);
+  }
+
 
   

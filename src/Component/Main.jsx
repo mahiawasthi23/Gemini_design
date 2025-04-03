@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import Navbar from "./Navbar";
 import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ addToRecent }) => {
   const [chats, setChats] = useState([]);
@@ -103,15 +103,17 @@ const Main = ({ addToRecent }) => {
         </div>
         <div className="input-container-wrapper">
           <div className="input-container">
-            <input
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="Enter a prompt for Gemini"
-              onKeyDown={(e) => (e.key === "Enter" ? sendMsg() : null)}
-            />
-            <button className="send-button " onClick={sendMsg}><span>
-                 <FontAwesomeIcon icon={faPaperPlane} /></span></button>
+            <label className="add-files">
+              <span><FontAwesomeIcon icon={faPlus} /></span>
+              <input type="file" style={{ display: "none" }}
+              onChange={(e) => console.log(e.target.files[0])}/>
+            </label>
+            <input type="text" value={text} onChange={(e) => setText(e.target.value)}
+            placeholder="Enter a prompt for Gemini"
+            onKeyDown={(e) => (e.key === "Enter" ? sendMsg() : null)}/>
+            <button className="send-button" onClick={sendMsg}>
+              <span><FontAwesomeIcon icon={faPaperPlane} /></span>
+            </button>
           </div>
         </div>
       </div>
