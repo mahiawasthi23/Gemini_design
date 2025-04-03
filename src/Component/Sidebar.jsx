@@ -15,8 +15,8 @@ function Sidebar({ toggleTheme, recentSearches }) {
 
 
   const handleNewChat = () => {
-    localStorage.removeItem("chatHistory"); // Only clear chat history
-    window.location.reload(); // Refresh page
+    localStorage.removeItem("chatHistory"); 
+    window.location.reload();
   };
 
   return (
