@@ -29,7 +29,7 @@ function Navbar() {
     <div className="navbar">
       <h1>Gemini</h1>
       <div className="profile" onClick={handleProfileClick}>
-        <h1>{username}</h1>
+        <h2>{username}</h2>
       </div>
       {showOptions && user?.username && (
         <div className="dropdown-menu">

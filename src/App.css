@@ -7,9 +7,7 @@
   color: white;
 } 
 
-
-
-.dark-theme .app-container,.dark-theme .header h1,
+.dark-theme .app-container,.dark-theme .main_header h1,
 .dark-theme input, .dark-theme .input-container, .dark-theme
 .input-container input::placeholder{
   background-color: rgb(29, 28, 28);
@@ -81,3 +79,7 @@
   background-color: skyblue;
 } 
 
+
+.dark-theme .profile{
+  background-color: rgb(56, 54, 54);
+}
