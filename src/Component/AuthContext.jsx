@@ -6,18 +6,25 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = async (email, password) => {
-    const response = await fetch("http://localhost:4000/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (response.ok) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.userId);
-      setUser({ username: data.username });
-    } else {
-      throw new Error(data.message);
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.userId);
+        setUser({ username: data.username });
+        alert("Login successful!");
+      } else {
+        alert("Login failed: " + data.message);
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      alert("An error occurred: " + error.message);
     }
   };
 
@@ -34,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+

@@ -3,13 +3,21 @@ import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCog, faQuestionCircle, faHistory, faMoon,faGem} from "@fortawesome/free-solid-svg-icons";
 
+
 function Sidebar({ toggleTheme, recentSearches }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+
   const toggleSidebar = () => setIsOpen(!isOpen);
   const handleMouseLeave = () => setIsOpen(false);
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
+
+
+  const handleNewChat = () => {
+    localStorage.removeItem("chatHistory"); 
+    window.location.reload();
+  };
 
   return (
     <div 
@@ -20,7 +28,7 @@ function Sidebar({ toggleTheme, recentSearches }) {
         <button className="open-btn" onClick={toggleSidebar}>☰</button>
       </div>
       <div className="menu-items" onClick={toggleSidebar}>
-        <div className="new-chat" >
+        <div className="new-chat" onClick={handleNewChat}>
           <FontAwesomeIcon icon={faPlus} />
           {isOpen && <span> New Chat</span>}
         </div>
@@ -30,7 +38,6 @@ function Sidebar({ toggleTheme, recentSearches }) {
             <div key={index} className="recent-item">{search}</div>
           ))}
         </div>
-
         <div className="bottom">
         <div className="bottom-item" tabIndex={0}>
             <FontAwesomeIcon icon={faGem} />
