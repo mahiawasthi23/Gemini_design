@@ -1,9 +1,26 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("user");
+      }
+    }
+  }, []);
 
   const login = async (email, password) => {
     try {
@@ -12,26 +29,35 @@ export const AuthProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
+      console.log("Login Response Data:", data);
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-        setUser({ username: data.username });
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ username: data.username, userId: data.userId })
+        );
+
+        setUser({ username: data.username, userId: data.userId });
+
         alert("Login successful!");
+        navigate("/");
       } else {
         alert("Login failed: " + data.message);
-        throw new Error(data.message);
       }
     } catch (error) {
+      console.error("Login Error:", error);
       alert("An error occurred: " + error.message);
     }
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+    localStorage.removeItem("user");
     setUser(null);
+    navigate("/login");
   };
 
   return (
@@ -41,7 +67,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
+export const useAuth = () => useContext(AuthContext);
