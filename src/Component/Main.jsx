@@ -85,7 +85,7 @@ const Main = ({ addToRecent }) => {
 
   return (
     <div className="chat-container">
-      <div className="header">
+      <div className="main_header">
         <Navbar />
       </div>
       <div className="main">
