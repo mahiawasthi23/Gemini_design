@@ -13,6 +13,12 @@ function Sidebar({ toggleTheme, recentSearches }) {
   const handleMouseLeave = () => setIsOpen(false);
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
+
+  const handleNewChat = () => {
+    localStorage.removeItem("chatHistory"); // Only clear chat history
+    window.location.reload(); // Refresh page
+  };
+
   return (
     <div 
       className={`sidebar ${isOpen ? "open" : "closed"}`} 
@@ -22,7 +28,7 @@ function Sidebar({ toggleTheme, recentSearches }) {
         <button className="open-btn" onClick={toggleSidebar}>☰</button>
       </div>
       <div className="menu-items" onClick={toggleSidebar}>
-        <div className="new-chat" >
+        <div className="new-chat" onClick={handleNewChat}>
           <FontAwesomeIcon icon={faPlus} />
           {isOpen && <span> New Chat</span>}
         </div>
