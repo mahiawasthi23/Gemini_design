@@ -9,7 +9,7 @@
     width: 40px;
     height: 40px;
     margin-top: 15px;
-    background-color: #555;
+    background-color: #b5f0f0;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -17,6 +17,11 @@
     font-weight: bold;
     cursor: pointer;
   }
+
+  .profile h1{
+    color: white;
+  }
+
   
   .dropdown-menu {
     position: absolute;

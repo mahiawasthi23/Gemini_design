@@ -163,3 +163,18 @@
   outline: none; 
 }
 
+
+.recent-item {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 16px;
+  text-align: left;
+  padding: 5px;
+  width: 100%;
+}
+
+.recent-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

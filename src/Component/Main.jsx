@@ -38,50 +38,54 @@ const Main = ({ addToRecent }) => {
 
   const sendMsg = async () => {
     if (!text.trim()) return;
-
+  
     const userMessage = { who: "me", message: text };
     setChats((prev) => {
       const updatedChats = [...prev, userMessage];
       localStorage.setItem("chatHistory", JSON.stringify(updatedChats));
       return updatedChats;
     });
-
+  
     addToRecent(text);
     const userId = localStorage.getItem("userId");
-
+    const token = localStorage.getItem("token");
+  
+    setText("");
+  
     try {
-      const token = localStorage.getItem("token");
-      if (token) {
-        await fetch(`${BACKEND_URL}/api/auth/search`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify({ userId, query: text }),
-        }).catch(error => {
-          console.error("Backend API error:", error);
-        });
-      }
-
-      setText("");
-
       const res = await fetch(URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ contents: [{ parts: [{ text }] }] }),
       });
+  
       const data = await res.json();
       const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No reply";
+  
+      if (token) {
+        await fetch(`http://localhost:4000/api/auth/search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userId, userPrompt: text, gptResponse: reply }),
+        });
+      }
+  
       await showTyping(reply);
     } catch (error) {
       console.error("Error:", error);
-      setChats((prev) => [...prev, { 
-        who: "bot", 
-        message: "Sorry, I'm having trouble connecting. Please try again later." 
-      }]);
+      setChats((prev) => [
+        ...prev,
+        {
+          who: "bot",
+          message: "Sorry, I'm having trouble connecting. Please try again later.",
+        },
+      ]);
     }
   };
+  
 
   return (
     <div className="chat-container">
@@ -120,6 +124,9 @@ const Main = ({ addToRecent }) => {
 };
 
 export default Main;
+
+
+
 
 
 
