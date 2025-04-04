@@ -95,3 +95,7 @@ function Sidebar({ toggleTheme, recentSearches }) {
 }
 
 export default Sidebar;
+
+
+
+
