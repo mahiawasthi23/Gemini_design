@@ -19,6 +19,7 @@ function Signup() {
       alert("Signup failed! Please try again.");
     }
   };
+  
 
   return (
     <div className="signup-container">
