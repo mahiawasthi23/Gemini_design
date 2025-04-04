@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./login.css";
 
 function Login() {
@@ -25,7 +26,7 @@ function Login() {
           <button className="login-btn" type="submit">Login</button>
         </form>
         <p className="switch-link">
-          Don't have an account? <a href="/signup">Sign up</a>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </div>
