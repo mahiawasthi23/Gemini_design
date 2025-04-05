@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Main from "./Component/Main";
 import Sidebar from "./Component/Sidebar";
@@ -9,9 +9,6 @@ import Signup from "./Component/Signup";
 import "./App.css";
 
 import SearchRecent from "./Component/SearchRecent";
-
-
-
 
 function App() {
   return (
@@ -23,8 +20,6 @@ function App() {
 
 function AppContent() {
   const { user } = useAuth();
- 
-
   const [recentSearches, setRecentSearches] = useState([]);
   const userId = localStorage.getItem("userId");
 
@@ -48,13 +43,10 @@ function AppContent() {
     const key = `recentSearches_${userId}`;
 
     setRecentSearches((prev) => {
-
       const filtered = prev.filter((entry) => entry.keyword !== keyword);
       const updated = [newEntry, ...filtered].slice(0, 5);
       localStorage.setItem(key, JSON.stringify(updated));
       return updated;
-
-  
     });
   };
 
@@ -63,28 +55,27 @@ function AppContent() {
   };
 
   return (
-    <AuthProvider>
-      <Router>
-        <div className="app-container">
-          <Sidebar recentSearches={recentSearches} toggleTheme={toggleTheme} />
-          <Routes>
-            {user ? (
-          <>
-            <Route path="/" element={<><Sidebar recentSearches={recentSearches} toggleTheme={toggleTheme} /><Main addToRecent={addToRecent} /></>} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </>
-        ) : (
-          <>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/search/:query" element={<SearchRecent />} />
-            <Route path="*" element={<Navigate to="/login" />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    
+      <div className="app-container">
+        {user && <Sidebar recentSearches={recentSearches} toggleTheme={toggleTheme} />}
+        <Routes>
+          {user ? (
+            <>
+              <Route path="/" element={<Main addToRecent={addToRecent} />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
+          ) : (
+            <>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/search/:query" element={<SearchRecent />} />
+              <Route path="*" element={<Navigate to="/login" />} />
+            </>
+          )}
+        </Routes>
+      </div>
+  
   );
 }
 
 export default App;
-   
