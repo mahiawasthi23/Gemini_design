@@ -29,7 +29,8 @@
     overflow: hidden;
   }
 
-  .main_header h1 {
+
+  .main_header h1 
     font-size: 1.5rem;
     font-weight: 300;
     color: rgb(56, 55, 55);
