@@ -22,6 +22,8 @@ const Main = ({ addToRecent }) => {
     setChats(savedChats);
   }, [userId]);
 
+
+  
   const showTyping = async (message) => {
     setTyping("");
     for (let i = 0; i < message.length; i++) {
