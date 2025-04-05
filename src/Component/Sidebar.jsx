@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCog, faQuestionCircle, faHistory, faMoon, faGem } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faCog,
+  faQuestionCircle,
+  faHistory,
+  faMoon,
+  faGem,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar({ toggleTheme, recentSearches = [] }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,12 +40,12 @@ function Sidebar({ toggleTheme, recentSearches = [] }) {
           {isOpen && <p>Recent</p>}
           {isOpen && recentSearches.length > 0 ? (
             recentSearches.map((entry, index) => (
-              <div 
-                key={index} 
-                className="recent-item" 
+              <div
+                key={index}
+                className="recent-item"
                 onClick={() => handleSearchClick(entry.keyword)}
               >
-                {entry.keyword}
+                {entry.fullPrompt || entry.keyword}
               </div>
             ))
           ) : (
@@ -47,30 +54,20 @@ function Sidebar({ toggleTheme, recentSearches = [] }) {
         </div>
 
         <div className="bottom">
-          <div className="bottom-item">
-            <FontAwesomeIcon icon={faGem} />
-            {isOpen && <span> Gem Manager</span>}
-          </div>
-          <div className="bottom-item">
-            <FontAwesomeIcon icon={faQuestionCircle} />
-            {isOpen && <span> Help</span>}
-          </div>
-          <div className="bottom-item">
-            <FontAwesomeIcon icon={faHistory} />
-            {isOpen && <span> Activity</span>}
-          </div>
+          <div className="bottom-item"><FontAwesomeIcon icon={faGem} />{isOpen && <span> Gem Manager</span>}</div>
+          <div className="bottom-item"><FontAwesomeIcon icon={faQuestionCircle} />{isOpen && <span> Help</span>}</div>
+          <div className="bottom-item"><FontAwesomeIcon icon={faHistory} />{isOpen && <span> Activity</span>}</div>
           <div className="bottom-item" onClick={toggleSettings}>
             <FontAwesomeIcon icon={faCog} />
             {isOpen && <span> Settings</span>}
           </div>
 
-          {isSettingsOpen && (
+          {isOpen && isSettingsOpen && (
             <div className="settings-menu">
               <button onClick={toggleTheme}>
-                <span><FontAwesomeIcon icon={faMoon} /></span> Dark Theme
-                <div className="toggle-div">
-                  <div className="circle-div"></div>
-                </div>
+                <span><FontAwesomeIcon icon={faMoon} /></span>
+                Dark Theme
+                <div className="toggle-div"><div className="circle-div"></div></div>
               </button>
             </div>
           )}
@@ -81,5 +78,3 @@ function Sidebar({ toggleTheme, recentSearches = [] }) {
 }
 
 export default Sidebar;
-
-

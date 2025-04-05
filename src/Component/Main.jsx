@@ -3,21 +3,23 @@ import ReactMarkdown from "react-markdown";
 import Navbar from "./Navbar";
 import "./Main.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const Main = ({ addToRecent }) => {
   const [chats, setChats] = useState([]);
   const [text, setText] = useState("");
   const [typing, setTyping] = useState("");
 
-  const key = import.meta.env.VITE_APP_URI; 
+  const key = import.meta.env.VITE_APP_URI;
   const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
-  
+
+  const userId = localStorage.getItem("userId");
+
   useEffect(() => {
-    const savedChats = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    const savedChats = JSON.parse(localStorage.getItem(`chatHistory_${userId}`)) || [];
     setChats(savedChats);
-  }, []);
+  }, [userId]);
 
   const showTyping = async (message) => {
     setTyping("");
@@ -29,7 +31,7 @@ const Main = ({ addToRecent }) => {
     const newChat = { who: "bot", message };
     setChats((prev) => {
       const updatedChats = [...prev, newChat];
-      localStorage.setItem("chatHistory", JSON.stringify(updatedChats));
+      localStorage.setItem(`chatHistory_${userId}`, JSON.stringify(updatedChats));
       return updatedChats;
     });
 
@@ -38,41 +40,40 @@ const Main = ({ addToRecent }) => {
 
   const sendMsg = async () => {
     if (!text.trim()) return;
-  
+
     const userMessage = { who: "me", message: text };
     setChats((prev) => {
       const updatedChats = [...prev, userMessage];
-      localStorage.setItem("chatHistory", JSON.stringify(updatedChats));
+      localStorage.setItem(`chatHistory_${userId}`, JSON.stringify(updatedChats));
       return updatedChats;
     });
-  
+
     addToRecent(text);
-    const userId = localStorage.getItem("userId");
+
     const token = localStorage.getItem("token");
-  
     setText("");
-  
+
     try {
       const res = await fetch(URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ contents: [{ parts: [{ text }] }] }),
       });
-  
+
       const data = await res.json();
       const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No reply";
-  
+
       if (token) {
-        await fetch(`http://localhost:4000/api/auth/search`, {
+        await fetch(`${BACKEND_URL}/api/auth/search`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ userId, userPrompt: text, gptResponse: reply }),
         });
       }
-  
+
       await showTyping(reply);
     } catch (error) {
       console.error("Error:", error);
@@ -85,7 +86,6 @@ const Main = ({ addToRecent }) => {
       ]);
     }
   };
-  
 
   return (
     <div className="chat-container">
@@ -114,8 +114,9 @@ const Main = ({ addToRecent }) => {
               placeholder="Enter a prompt for Gemini"
               onKeyDown={(e) => (e.key === "Enter" ? sendMsg() : null)}
             />
-            <button className="send-button " onClick={sendMsg}><span>
-                 <FontAwesomeIcon icon={faPaperPlane} /></span></button>
+            <button className="send-button" onClick={sendMsg}>
+              <span><FontAwesomeIcon icon={faPaperPlane} /></span>
+            </button>
           </div>
         </div>
       </div>
@@ -124,9 +125,3 @@ const Main = ({ addToRecent }) => {
 };
 
 export default Main;
-
-
-
-
-
-
