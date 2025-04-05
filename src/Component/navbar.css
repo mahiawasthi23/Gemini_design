@@ -18,11 +18,13 @@
     cursor: pointer;
   }
 
+
 .profile h2{
   color: white;
   font-weight: 100;
   font-size: 20px;
 }
+
   
   .dropdown-menu {
     position: absolute;

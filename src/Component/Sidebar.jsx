@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,13 +11,24 @@ import {
   faGem,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar({ toggleTheme, recentSearches }) {
+
+function Sidebar({ toggleTheme, recentSearches = [] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const navigate = useNavigate();
+
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const handleMouseLeave = () => setIsOpen(false);
   const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
+
+
+  const handleSearchClick = (query) => {
+    navigate(`/search/${encodeURIComponent(query)}`);
+  };
+
+
+    
 
   const handleNewChat = () => {
     localStorage.removeItem("chatHistory");
@@ -28,24 +40,36 @@ function Sidebar({ toggleTheme, recentSearches }) {
       className={`sidebar ${isOpen ? "open" : "closed"}`}
       onMouseLeave={handleMouseLeave}
     >
+
       <div className="top">
         <button className="open-btn" onClick={toggleSidebar}>
           ☰
         </button>
       </div>
+
       <div className="menu-items" onClick={toggleSidebar}>
+
+
         <div className="new-chat" onClick={handleNewChat}>
           <FontAwesomeIcon icon={faPlus} />
           {isOpen && <span> New Chat</span>}
         </div>
+
         <div className="recent">
           {isOpen && <p>Recent</p>}
-          {isOpen &&
-            recentSearches.map((search, index) => (
-              <div key={index} className="recent-item">
-                {search}
+          {isOpen && recentSearches.length > 0 ? (
+            recentSearches.map((entry, index) => (
+              <div
+                key={index}
+                className="recent-item"
+                onClick={() => handleSearchClick(entry.keyword)}
+              >
+                {entry.fullPrompt || entry.keyword}
               </div>
-            ))}
+            ))
+          ) : (
+            isOpen && <p className="no-data">No Recent Searches</p>
+          )}
         </div>
         <div className="bottom">
           <div className="bottom-item" tabIndex={0}>
@@ -75,9 +99,10 @@ function Sidebar({ toggleTheme, recentSearches }) {
             {isOpen && <span> Settings</span>}
           </div>
 
-          {isSettingsOpen && (
+          {isOpen && isSettingsOpen && (
             <div className="settings-menu">
               <button onClick={toggleTheme}>
+
                 <span>
                   <FontAwesomeIcon icon={faMoon} />
                 </span>{" "}
@@ -95,7 +120,3 @@ function Sidebar({ toggleTheme, recentSearches }) {
 }
 
 export default Sidebar;
-
-
-
-
