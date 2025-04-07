@@ -23,6 +23,8 @@ function Sidebar({ toggleTheme, recentSearches }) {
     window.location.reload();
   };
 
+  
+
   return (
     <div
       className={`sidebar ${isOpen ? "open" : "closed"}`}
